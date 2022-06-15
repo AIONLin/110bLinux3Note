@@ -564,7 +564,7 @@ ansible-playbook playbook.yml
 ```
 
 
-![](/110bLinux3Note/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B812.jpg)
+![](/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B812.jpg)
 這邊因為已經安裝過所以顯示OK，但可以看出 app1 跟 app2 都有被 httpd 跟 vsftp 取代
 
 END
