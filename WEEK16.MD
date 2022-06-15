@@ -107,7 +107,7 @@ yml很重視縮排跟空格
 playbook.yml
 修改讓他內容剩下安裝跟啟動 
 
-![](/Note/pics/pj1_httpd/ansible_server_pg1_httpd2-0.jpg)
+![](/110bLinux3Note/pics/pj1_httpd/ansible_server_pg1_httpd2-0.jpg)
 
 到 server1 確認網頁伺服器有沒有裝  
 ```
@@ -128,7 +128,7 @@ ansible-playbook playbook.yml
 ```
 curl http://centos7-3
 ```
-![](/Note/pics/pj1_httpd/ansible_server_pg1_httpd1.jpg)  
+![](/110bLinux3Note/pics/pj1_httpd/ansible_server_pg1_httpd1.jpg)  
 
 
 <br>
@@ -137,7 +137,7 @@ curl http://centos7-3
 Centos7-3、Centos7-4 都會 run  
 綠色是上次完成的  
 changed 是這次新執行 (之前跑過沒截到圖)
-![](/Note/pics/pj1_httpd/ansible_server_pg1_httpd2.jpg)
+![](/110bLinux3Note/pics/pj1_httpd/ansible_server_pg1_httpd2.jpg)
 
 
 
@@ -160,9 +160,9 @@ cp etc/httpd/conf/httpd.conf /home/user/ansible/project1
 ```
 
 到 pj1 裡的 httpd.conf 檔案將 port80 改 8080  
-![](/Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port1.jpg)
+![](/110bLinux3Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port1.jpg)
 playbook hosts 改為 server1
-![](/Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port2.jpg)
+![](/110bLinux3Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port2.jpg)
 
 
 值得注意的是 單純
@@ -181,7 +181,7 @@ port 也改成 8081 再重新執行
 ansible-playbook playbool.yml
 ```
 即可
-![](/Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port3.jpg)
+![](/110bLinux3Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port3.jpg)
 ### 注意  
 
 有可能會一直修改配置檔案，如果伺服器已經有人在用，restart 會讓他斷線，因此不建議用
@@ -220,14 +220,14 @@ notify 的內容跟 handlers 的 name 要完全一樣
 ansible-playbook playbook.yml
 curl http://192.168.56.105:剛剛改的port 
 ```
-![](/Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port5.jpg)
+![](/110bLinux3Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port5.jpg)
 
 到第二台機器 ( Centos7-3 )
 ```
  netstat -tunlp | grep 剛剛改的port號
 ```
 
-![](/Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port6.jpg)
+![](/110bLinux3Note/pics/pj1_httpd_port/ansible_server_pg1_httpd_port6.jpg)
 
 
 ## part2   LINUX - FTP VSFTPD 安裝及設定教學
@@ -261,7 +261,7 @@ playbook 內容 : 只做安裝與啟動，其他先註解掉
   #  - name: reload vsftpd server
   #    service: name=vsftpd state=reloaded
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd1.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd1.jpg)
 ```
 ansible-playbook playbook.yml
 ```
@@ -273,7 +273,7 @@ user進入
 ls
 ```
 看的到東西代表成功  
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd3.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd3.jpg)
 
 
 * ## 配置檔案 :
@@ -428,7 +428,7 @@ tcp_wrappers=YES
       service: name=vsftpd state=restarted
 
 
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd4.jpg)  
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd4.jpg)  
 
 anonymous_enable 先 yes 測試再改回 no 測試匿名登入
 
@@ -439,7 +439,7 @@ anonymous
 abc@gmail.com
 可以進去
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_yes2.jpg) 
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_yes2.jpg) 
 
 ```
 改成no
@@ -448,9 +448,9 @@ anonymous
 abc@gmail.com
 會進不去
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_no1.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_no1.jpg)
 
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_no3.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_no3.jpg)
 
 <br>
 配置檔其實很多註解，將註解拿掉 : 
@@ -478,7 +478,7 @@ pam_service_name=vsftpd
 userlist_enable=YES
 tcp_wrappers=YES
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_short.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_anonymous_short.jpg)
 精簡版也是改anonymous_enable=NO或YES就好
 
 * 新增使用者
@@ -500,7 +500,7 @@ ansible server1 -m user -a "name=tom1 password=tom1"
 ssh tom1@centos7-3
 ```
 
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserTOM1_1.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserTOM1_1.jpg)
 
 
 
@@ -510,7 +510,7 @@ ssh tom1@centos7-3
 ```
 ansible server1 -m user -a "name=tom1 password={{'tom1'|password_hash('sha512')}}"
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserTOM1_2.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserTOM1_2.jpg)
 這樣才能ssh tom1@centos7-3 第二台
  
 
@@ -539,17 +539,17 @@ ansible server1 -m user -a "name=tom1 password={{'tom1'|password_hash('sha512')}
     - name: restarted vsftpd server
       service: name=vsftpd state=restarted
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandyYML.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandyYML.jpg)
 ```
 ansible-playbook playbook.yml
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandy_playbook.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandy_playbook.jpg)
 ```
 ftp centos7-3
 mandy
 ls
 ```
-![](/Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandyOK.jpg)
+![](/110bLinux3Note/pics/pj1_vsftp/ansible_server_pg1_vsftpd_adduserMandyOK.jpg)
 
 
 離開用bye
@@ -558,13 +558,13 @@ ls
 * ## 變數
 project2:
 定義在playbook裡面的變數
-![](/Note/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B81.jpg)
+![](/110bLinux3Note/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B81.jpg)
 ```
 ansible-playbook playbook.yml
 ```
 
 
-![](/Note/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B812.jpg)
+![](/110bLinux3Note/pics/pj2/ansible_server_pj2_%E8%AE%8A%E6%95%B812.jpg)
 這邊因為已經安裝過所以顯示OK，但可以看出 app1 跟 app2 都有被 httpd 跟 vsftp 取代
 
 END
